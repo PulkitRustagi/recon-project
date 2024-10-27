@@ -151,6 +151,8 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
+            <!-- Increase font size-->
+            <span style="font-size: 1.28em;">
             When independently trained or designed robots are deployed in a shared environment, their combined actions can lead to unintended negative side effects (NSEs). To ensure safe and efficient operation, robots must optimize task performance while minimizing the penalties associated with NSEs, balancing individual objectives with collective impact. We model the problem of mitigating NSEs in a cooperative multi-agent system as a bi-objective lexicographic decentralized Markov decision process. We assume independence of transitions and rewards with respect to the robots' tasks, but the joint NSE penalty creates a form of dependence in this setting. To improve scalability, the joint NSE penalty is decomposed into individual penalties for each robot using credit assignment, which facilitates decentralized policy computation. We empirically demonstrate, using mobile robots and in simulation, the effectiveness and scalability of our approach in mitigating NSEs.  
           </p>
         </div>
@@ -161,51 +163,24 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
+<!-- have an image -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/overview.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Approach Overview.
-        </h2>
+      <h2 class="title is-centered has-text-centered">Approach Overview</h2>
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-five-sixths">
+          <img src="static/images/overview.png" alt="MY ALT TEXT"/>
+          <h2 class="subtitle has-text-centered">
+            Agents independently compute policies to complete tasks described by \(R_1^i\) (Naive policy). The NSE Monitor computes the NSE penalty for the joint policy \(\vec{\pi}\). 
+            The Blame Resolver assigns a blame value for each agent, by evaluating counterfactual scenarios specific to each agent, as illustrated with warehouse robots handling different-sized boxes. 
+            Individual penalty functions \(R_N^i\) are derived for each agent, based on the estimate blame. Agents then recompute their policies by solving the bi-objective problem with \(R_1^i \succ R_N^i\), 
+            where \(\succ\) denotes preference ordering over the objectives and their associated reward functions.
+          </h2>
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/naive_policy.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Agents independently compute policies to complete assigned tasks described by \(R_1^i\), ignoring presence of any negative side effects (called Naive policy).
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/nse_monitor.png" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          The NSE Monitor computes the NSE penalty for the naive joint policy \(\vec{\pi}\).
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/blame_resolver.png" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        The Blame Resolver assigns a blame value for each agent, by evaluating counterfactual scenarios specific to each agent, as illustrated with warehouse robots handling different-sized boxes. Individual penalty functions \(R^i_N\) are derived for each agent, based on the estimate blame.
-      </h2>
     </div>
-    <div class="item">
-     <!-- Your image here -->
-     <img src="static/images/final_policy.png" alt="MY ALT TEXT"/>
-     <h2 class="subtitle has-text-centered">
-      Agents then recompute their policies by solving the bi-objective problem with \(R_1^i \succ R_N^i\), where \(\succ\) denotes preference ordering over the objectives and their associated reward functions.
-     </h2>
-   </div>
   </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
 
 
 
@@ -246,26 +221,73 @@
 
 
 <!-- Youtube video -->
-<section class="hero is-small is-light">
+<!-- <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- Paper video. -->
       <h2 class="title is-3">Experiments with Mobile Robots</h2>
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           
           <div class="publication-video">
-            <!-- Youtube embed code here -->
             <iframe src="static/videos/icra_vid.mp4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End youtube video -->
 
 
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Experiments with Mobile Robots</h2>
+        <p class="subtitle" style="text-align: center;">
+          We demonstrate the effectiveness of our approach in mitigating NSEs using mobile robots in a warehouse scenario. 
+          The robots are tasked with transporting boxes of different sizes (encoded as different colors) to their respective destinations. 
+          The NSE penalty is incurred when either or both robots carrying boxes go over locations marked with <span style="color: red; font-weight: bold;">X</span>. 
+          We compare the performance of our approach with a naive policy, a difference reward, and a considerate reward. 
+          We also evaluate the performance of our generalized RECON approach with and without counterfactual data. 
+          The videos below show the robots executing the tasks with different reward functions.
+        </p>
+
+        <!-- First row of videos -->
+        <div class="columns is-centered">
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/naive_policy.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>Naive Policy</h4>
+          </div>
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/dr.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>Difference Reward</h4>
+          </div>
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/considerate.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>Considerate Reward</h4>
+          </div>
+        </div>
+
+        <!-- Second row of videos -->
+        <div class="columns is-centered">
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/recon.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>RECON</h4>
+          </div>
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/gen_recon_wo_cf.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>Generalized RECON w/o CF data</h4>
+          </div>
+          <div class="column is-4 has-text-centered">
+            <video autoplay muted loop playsinline controls src="static/videos/gen_recon_w_cf.mp4" style="width:100%; border-radius:10px;"></video>
+            <h4>Generalized RECON w/ CF data</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
 
